@@ -210,15 +210,17 @@ This is telling us to do almost the exact same thing one more time. Each person 
 
 `finalize_multisig MultisigxV1DJKkCJAaVw7BTnAQuMpHSe3xVgRoQtp4d6ty7nbiissBYrU29mR3BBTL1S8fiFVpfSSVXuSVzfPJ9FYBbsdqU3A2aabVeFzGHHdPwGEudRHKp3QiirG6sZbduaWNo3mxec7HAVSqcsCKynTSgQgwDXYQ8wevq8tPcag5ABMKpy7yojYgc94tsn4rc3vDyrx5JoZH5VjFqvBGKNWW59EgxprmCAiV MultisigxV1NeWAJKop7e7DMnUSQJzMKVHMzU4PDNajV6MpMkmz4e9wcgWNdKU19WPgggPp12hAnBiSkL3q1wUmMi365HfqZbZ4aabVeFzGHHdPwGEudRHKp3QiirG6sZbduaWNo3mxec7H9yZ51cgZhpYVoTbVWNMTLHHg15tBTQZHMgDPruqBbHV265T2UjJX7qwA5G1bpr6ZUtPU8c3D613HWcqB6fkvkcn4`
 
-Remember to put a space between the sets of multisig info. There should be no output, but you will notice that the wallet address has changed. INSERT PIC
+Remember to put a space between the sets of multisig info. There should be no output, but you will notice that the wallet address has changed.
+
+![finalize_multisig](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/finalize_multisig1.png)
 
 Your new, multisig wallet address can be found by doing
 
 `address`
 
-and you will notice that now all 3 parties have the same wallet address.
+and you will notice that now all 3 parties have the same wallet address:
 
-INSERT PIC
+![3xaddress]()
 
 
 After our multisig wallet has some funds on it, let's spend them. First we need to exchange multisig info with our friends. Since this is a 2/3 multisig wallet, we need the info from 1 friend to complete a transaction. Alternatively, we could get the info from both friends and decide later which info to sign with. First we'll *export* our multisig info by using the command export_multisig_info and any file name, like:
@@ -226,6 +228,10 @@ After our multisig wallet has some funds on it, let's spend them. First we need 
 `export_multisig_info multis1`
 
 The exported file will be in the same folder as your wallets, in this case /home/fire/masari-linux-x64-v0.3.0.0. We need to send this to our 2 friends so they can sign a transaction, and they need to send their exported multisig info to us.
+
+![multis1](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/multis1.png)
+
+![multis2](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/multis2.png)
 
 Now at least 1 other friend needs to *import* the multisig info file. By default, the wallet will look in the shell working folder for the files (that was /home/fire/masari-linux-x64-v0.3.0.0 in this case, but can vary if you have an advanced setup), so make sure the files are there. The file "multis 2" should be in friend #2's wallet folder since he exported it there. We do this next step with the import_multisig_info command:
 
@@ -239,13 +245,19 @@ Any of the 3 friends can start the transaction, and will need to get the signatu
 
 `transfer 5qF9rxMbxBH4mEXBs1SE1taMDrkEoVzGX4ycwBhNCiVqPMc5yEKoEqN4TLavJcdLMJGyQgawFTKbu5QTHFLVQWsWTbFTkX6 1`
 
+![transfer](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/transfer.png)
+
 This will generate a file called multisig_masari_tx. For peace of mind, let's do one transaction at a time. Let's choose friend #2 to complete the signature for this transaction. Our friend needs to have our file multisig_masari_tx in his shell working folder and then use sign_multisig
 
 `sign_multisig multisig_masari_tx`
 
-After verifying the address, amount, fees, ring size, and change address, our friend will press `y` and the transaction will be successfully signed to the file multisig_masari_tx. Now the transaction is ready to relay to the network. This can 
+![sign](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/sign_multisig_right1.png)
 
-submit_multisig multisig_masari_tx
+After verifying the address, amount, fees, ring size, and change address, our friend will press `y` and the transaction will be successfully signed to the file multisig_masari_tx. Now the transaction is ready to be relayed to the network. Do:
+
+`submit_multisig multisig_masari_tx`
+
+![submit](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/tx_success.png)
 
 To recap, the sending process went like:
 
