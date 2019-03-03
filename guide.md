@@ -137,7 +137,7 @@ or
  
  ![Prove sending](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/prove_sending.png)
 
-###Signing and verifying
+### Signing and verifying
 
 Since cryptocurrencies are founded on cryptography, we can also do some pretty neat things with the simplewallet, like
 sign and verify files. Let's make a text file with a message, say message.txt, and sign it with:
