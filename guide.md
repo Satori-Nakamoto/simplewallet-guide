@@ -220,7 +220,7 @@ Your new, multisig wallet address can be found by doing
 
 and you will notice that now all 3 parties have the same wallet address:
 
-![3xaddress]()
+![3xaddress](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/3xaddress.png)
 
 
 After our multisig wallet has some funds on it, let's spend them. First we need to exchange multisig info with our friends. Since this is a 2/3 multisig wallet, we need the info from 1 friend to complete a transaction. Alternatively, we could get the info from both friends and decide later which info to sign with. First we'll *export* our multisig info by using the command export_multisig_info and any file name, like:
