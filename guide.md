@@ -35,7 +35,7 @@ As you can see, we now have 3 accounts indexed 0,1, and 2. To switch between acc
 
 `account switch <index>`
 
-Let's say someone wants to buy the TV at our online garage sale. We should switch to account 1- garage sale income, and create 
+Let's say someone wants to buy the TV at our garage sale. We should switch to account 1- garage sale income, and create 
 a new address to receive the funds. Let's add the label "old TV", so we can remember the source of the income when tax season 
 inevitably rolls around.
 
@@ -46,7 +46,7 @@ inevitably rolls around.
 ![Address for TV money](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/new_add_oldTV.png)
 
 Now we can give this new address 9pDUb...43yY to the customer. The price for the old TV is 2 MSR. When we want to verify that
-the customer has paid, we can to switch to the relevant account and use
+the customer has paid, we can switch to the relevant account and use
 
 `address all`
 
