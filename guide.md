@@ -29,7 +29,7 @@ Let's add another account for "everyday cash"
 
 `account new everyday cash`
 
-![New accounts](https://imgur.com/dLUwSnT)
+![New accounts](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/new_accts.png)
 
 As you can see, we now have 3 accounts indexed 0,1, and 2. To switch between accounts, use 
 
@@ -43,7 +43,7 @@ inevitably rolls around.
 
 `address new old TV`
 
-![Address for TV money](https://imgur.com/ZuQHfeV)
+![Address for TV money](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/new_add_oldTV.png)
 
 Now we can give this new address 9pDUb...43yY to the customer. The price for the old TV is 2 MSR. When we want to verify that
 the customer has paid, we can to switch to the relevant account and use
@@ -62,7 +62,7 @@ where we see (in order) block height, transaction in or out, time, amount, txid,
 corresponds to our generated address "old TV" index 1, so we know the TV is paid for. For the sake of privacy, we won't reuse 
 this address.
 
-![Got the TV money!](https://imgur.com/mO7ITUs)
+![Got the TV money!](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/payment_receive_index1.png)
 
 ### Sending
 
@@ -135,7 +135,7 @@ Possible outcomes are:
 or
  `Error: <address> received nothing in txid <txid>`
  
- ![Prove sending](https://imgur.com/bGSrp7k)
+ ![Prove sending](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/prove_sending.png)
 
 ###Signing and verifying
 
