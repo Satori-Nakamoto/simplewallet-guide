@@ -3,7 +3,7 @@
 
 ### Basics
 
-After daemon is synced, open a new terminal tab with Ctrl + Shift + t
+After the daemon is synced, open a new terminal tab with Ctrl + Shift + t
 
 `./masari-wallet-cli`
 
@@ -25,13 +25,13 @@ First, a new account within our wallet:
 `account new garage sale income`
 
 This will make a new account with the label "garage sale income". Notice that white spaces are allowed in the new account name.
-Let's add another account for "everyday cash"
+Let's add another account for "everyday cash":
 
 `account new everyday cash`
 
 ![New accounts](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/new_accts.png)
 
-As you can see, we now have 3 accounts indexed 0,1, and 2. To switch between accounts, use 
+As you can see, we now have 3 accounts indexed 0,1, and 2. To switch between accounts, use: 
 
 `account switch <index>`
 
@@ -46,15 +46,15 @@ inevitably rolls around.
 ![Address for TV money](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/new_add_oldTV.png)
 
 Now we can give this new address 9pDUb...43yY to the customer. The price for the old TV is 2 MSR. When we want to verify that
-the customer has paid, we can switch to the relevant account and use
+the customer has paid, we can switch to the relevant account and use:
 
 `address all`
 
-to show all addresses within that account and whether or not they have been used. To check balance, simply type
+to show all addresses within that account and whether or not they have been used. To check balance, simply type:
 
 `balance`
 
-To see specifically which address received the funds, we can use
+To see specifically which address received the funds, we can use:
 
 `show_transfers in`
 
@@ -67,16 +67,16 @@ this address.
 ### Sending
 
 Now say we want to send 1 MSR to a friend. After we open the wallet and select the account we want to send from, we can
-use the transfer command. The most general transfer command is
+use the transfer command. The most general transfer command is:
 
 `transfer <address> <amount>`
 
-Sending 1 MSR to the address our friend gave us would then look like this
+Sending 1 MSR to the address our friend gave us would then look like this:
 
 `transfer 9jNEbBf4eUUeNvKEJVpeqGa86iavuJzhAV35REsYNh7KEHrFrHFJAMJiA1PPdLZdAvDAN7ps4Jn6iLfobCmMyT9pV17nrRi 1`
 
 If you use a payment ID, it should be inserted after the amount. Using a new address for each transaction is recommended, though.
-If you want to reuse addresses and send multiple transactions to the same address, you can use the address book funcion.
+If you want to reuse addresses and send multiple transactions to the same address, you can use the address book function.
 
 ### Address book
 
@@ -84,11 +84,11 @@ To add an entry (white spaces are allowed in description):
 
 `address_book add <address> <description>`
 
-To show all entries in your address book, use
+To show all entries in your address book, use:
 
 `address_book`
 
-And to delete an entry, use
+And to delete an entry, use:
 
 `address_book delete <index>`
 
@@ -99,29 +99,36 @@ All of these commands will show your address book after executing.
 You will need 3 things to prove that you sent funds: txid, tx key, and the wallet address you sent to. In this case we sent
 to the address
 9jNEbBf4eUUeNvKEJVpeqGa86iavuJzhAV35REsYNh7KEHrFrHFJAMJiA1PPdLZdAvDAN7ps4Jn6iLfobCmMyT9pV17nrRi
-which can be verified when we get the txid and show the outbound transfers. We do that with
+which can be verified when we get the txid and show the transfers out. We do that with:
 
 `show_transfers out`
 
 The txid is the string after the date and amount sent. In this case it's
+
 13f7529685020eb3e69b401acc81968f90fe30024492f7b599053bf2ec269188
+
 Save this for step 3. Notice that the destination address displayed here.
 
-Next, get the tx key with
+Next, get the tx key with:
 
 `get_tx_key <txid>`
 
 In this case it's
+
 e8b96020ae99162c0d87d35d5d96e960e573189cefea634660c0cb1f01a6d905
+
 Save this for step 3.
 
-Finally, check the tx key with the address you sent to,
+Finally, step 3. Check the tx key with the tx ID, tx key, and the address you sent to:
 
 `check_tx_key <txid> <txkey> <address>`
 
 Possible outcomes are:
+
  `<address> received <amount> in txid <txid>`
+ 
 or
+
  `Error: <address> received nothing in txid <txid>`
  
  ![Prove sending](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/prove_sending.png)
@@ -135,8 +142,8 @@ doing `address` in the corresponding account) and the private viewkey. Doing
 
 `viewkey`
 
-will return your private viewkey and your public viewkey. Each wallet has 1 viewkey, so it's the same for all your accounts
-and addresses within the same wallet.
+will return your private viewkey and your public viewkey. Each wallet has 1 set of viewkeys, so it's the same for all 
+your accounts and addresses within the same wallet.
 
 Proving sending is a bit more tricky. You also need 2 pieces of info here- the recipient's address, and the tx private key
 that was generated by your wallet when you sent that transaction. Use the method outlined above in "Proving sending" to get
@@ -145,7 +152,7 @@ the information needed, then simply copy and paste the info into the block explo
 
 ### Signing and verifying
 
-Since cryptocurrencies are founded on cryptography, we can also do some pretty neat things with the simplewallet, like
+Since cryptocurrencies are founded on cryptography, we can do some pretty neat things with the simplewallet, like
 sign and verify files. Let's make a text file with a message, say message.txt, and sign it with:
 
 `sign <file_to_sign>`
@@ -154,7 +161,7 @@ for example:
 
 `sign /home/me/Desktop/message.txt`
 
-This will print out a signature. You need to give that signature and your wallet address (with the file to transfer, of
+This will print out a signature. You need to give that signature and your wallet address (along with the file in question, of
 course) to the other party to verify the file with the verify command:
 
 `verify <filename> <address> <signature>`
@@ -173,10 +180,11 @@ or
  
 ### Multisig wallet
 
-**Warning: It's best to start this process with a new wallet. Making a wallet that's in use into a multisig wallet will cause all the wallet's existing funds to need to meet the multisig wallet requirements.**
+**Warning: It's best to start this process with a new wallet. Making a wallet that's in use into a multisig wallet will cause all the wallet's existing funds to be subject to the multisig wallet requirements.**
 
 Let's make a 2/3 multisig wallet- meaning a wallet that is shared between 3 parties and requires the signature of 2 of the
-parties to send a transaction. After generating a new wallet (or 3 in the case of this tutorial example) we start by doing:
+parties in order to send a transaction. After generating a new wallet (or 3 in the case of this tutorial example) we start 
+by doing:
 
 `prepare_multisig`
 
@@ -188,7 +196,7 @@ MultisigV1cwjWztsW58NCXeWLBJm9oBawvQGGSTrcvhEo9diSuZQ8FSiGVPqLT3DbHeYKBTkyGjfbWq
 Send this multisig info to all other participants, then use make_multisig <threshold> <info1> [<info2>...] with others' multisig info
 This includes the PRIVATE view key, so needs to be disclosed only to that multisig wallet's participants`
 
-All parties involved need to run this command and share their respective output line [MultisigV1cs...Y2WC] with all other parties, so make sure to save that output line somewhere for easy access.
+All parties involved need to run this command and share their respective output line (MultisigV1cs...Y2WC in our case) with all other parties, so make sure to save that output line somewhere for easy access.
 
 Let's say that our 2 friends gave us their multisig info as follows:
 
@@ -196,7 +204,7 @@ MultisigV1D9uKCS3sYKzWGgDA5nieEg7WwQDXpAPEgWWp83dDvQnJC51aFzcKLXWVPrAjX7PfspgvxX
 
 MultisigV16fa4JTwXSaLi8NUVfaXhu1Rid6zt8MsYNGgYwbhLAj5e2rVwH7gR7rMjo898PvqtoBbYbDg96W2EV7kTv7xiAU5X3b4mQ1AGJbn3GeohBPd8334EWRaMN7vqnPQeYMgzNqGc1awtuX8WF5AEwTNyu8EAAsHgD6k5re7nXVc2muonKuQU
 
-Now we do make_multisig <# of signatures needed> <friends' multisig info>
+Now we do make_multisig <# of signatures needed to send funds> <friends' multisig info>
 
 `make_multisig 2 MultisigV1D9uKCS3sYKzWGgDA5nieEg7WwQDXpAPEgWWp83dDvQnJC51aFzcKLXWVPrAjX7PfspgvxXZGLU7bTgBSiawsXpCZfVW5GfrWcwdVHQypWQt1Nv4NhYUiDtGReVoXMoPJQGcK6TYR3NNWTMNDZDCB8sCK9jSv5tbpXF9bi7NVWXSB392S MultisigV16fa4JTwXSaLi8NUVfaXhu1Rid6zt8MsYNGgYwbhLAj5e2rVwH7gR7rMjo898PvqtoBbYbDg96W2EV7kTv7xiAU5X3b4mQ1AGJbn3GeohBPd8334EWRaMN7vqnPQeYMgzNqGc1awtuX8WF5AEwTNyu8EAAsHgD6k5re7nXVc2muonKuQU`
 
@@ -206,7 +214,9 @@ Note that there's a space between the 2 strings of multisig info from our friend
 MultisigxV1RyEDEvH47sE2vmWE9xUpHRdYdxQcdXHR5UJbhQkKr8M8YrU29mR3BBTL1S8fiFVpfSSVXuSVzfPJ9FYBbsdqU3A2cgWNdKU19WPgggPp12hAnBiSkL3q1wUmMi365HfqZbZ4DSjawWJFVDkcQdgsYJY2LJhxe5dQhLccujb3rLkXL62ZE7nF9C5rXJ3HH54QJsyWA3G25ckc9re5WLehexiQbgby
 Send this multisig info to all other participants, then use finalize_multisig <info1> [<info2>...] with others' multisig info`
 
-This is telling us to do almost the exact same thing one more time. Each person does `finalize_multisig` with the output line of the other 2 friends. Our output line was [MultisigxV1RyED...LehexiQbgby], so for this example:
+This is telling us to do almost the exact same thing one more time. Each person does `finalize_multisig` with the output line 
+of the other 2 friends. Our output line was [MultisigxV1RyED...LehexiQbgby] and our friends gave us the output lines
+[MultisigxV1DJKkCJA...EgxprmCAiV] and [MultisigxV1NeWAJK...fkvkcn4], so for this example:
 
 `finalize_multisig MultisigxV1DJKkCJAaVw7BTnAQuMpHSe3xVgRoQtp4d6ty7nbiissBYrU29mR3BBTL1S8fiFVpfSSVXuSVzfPJ9FYBbsdqU3A2aabVeFzGHHdPwGEudRHKp3QiirG6sZbduaWNo3mxec7HAVSqcsCKynTSgQgwDXYQ8wevq8tPcag5ABMKpy7yojYgc94tsn4rc3vDyrx5JoZH5VjFqvBGKNWW59EgxprmCAiV MultisigxV1NeWAJKop7e7DMnUSQJzMKVHMzU4PDNajV6MpMkmz4e9wcgWNdKU19WPgggPp12hAnBiSkL3q1wUmMi365HfqZbZ4aabVeFzGHHdPwGEudRHKp3QiirG6sZbduaWNo3mxec7H9yZ51cgZhpYVoTbVWNMTLHHg15tBTQZHMgDPruqBbHV265T2UjJX7qwA5G1bpr6ZUtPU8c3D613HWcqB6fkvkcn4`
 
@@ -222,8 +232,9 @@ and you will notice that now all 3 parties have the same wallet address:
 
 ![3xaddress](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/3xaddress.png)
 
+### Spending from multisig
 
-After our multisig wallet has some funds on it, let's spend them. First we need to exchange multisig info with our friends. Since this is a 2/3 multisig wallet, we need the info from 1 friend to complete a transaction. Alternatively, we could get the info from both friends and decide later which info to sign with. First we'll *export* our multisig info by using the command export_multisig_info and any file name, like:
+After our multisig wallet has some funds on it, let's spend them. First we need to exchange multisig info with our friends. Since this is a 2/3 multisig wallet, we need the info from 1 friend to complete a transaction. Alternatively, we could get the info from both friends and decide later which info to sign with. First we'll **export** our multisig info by using the command export_multisig_info and any file name, like:
 
 `export_multisig_info multis1`
 
@@ -233,11 +244,14 @@ The exported file will be in the same folder as your wallets, in this case /home
 
 ![multis2](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/multis2.png)
 
-Now at least 1 other friend needs to *import* the multisig info file. By default, the wallet will look in the shell working folder for the files (that was /home/fire/masari-linux-x64-v0.3.0.0 in this case, but can vary if you have an advanced setup), so make sure the files are there. The file "multis 2" should be in friend #2's wallet folder since he exported it there. We do this next step with the import_multisig_info command:
+![multis3](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/multis3.jpg)
 
-`import_multisig_info multis1 multis2`
+Now we'll **import** our friends' multisig info files. By default, the wallet will look in the shell working folder for the files (that was /home/fire/masari-linux-x64-v0.3.0.0 in this case, but can vary if you have an advanced setup), so make sure the files are there. The file "multis 2" should be in friend #2's wallet folder since he exported it there, same for "multis 3". After we have all 3 multisig info files, we use the import_multisig_info command:
 
-The output will tell us the balance our multisig wallet has to work with, and that multisig info was imported.
+`import_multisig_info multis2 multis3`
+
+The output will tell us the balance our multisig wallet has to work with, and that multisig info was imported. See the photo
+below for reference.
 
 Now let's spend!
 
@@ -247,24 +261,27 @@ Any of the 3 friends can start the transaction, and will need to get the signatu
 
 ![transfer](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/transfer.png)
 
-This will generate a file called multisig_masari_tx. For peace of mind, let's do one transaction at a time. Let's choose friend #2 to complete the signature for this transaction. Our friend needs to have our file multisig_masari_tx in his shell working folder and then use sign_multisig
+This will generate a file called multisig_masari_tx. For peace of mind, let's do one transaction at a time. Let's choose friend #2 to complete the signature for this transaction. Our friend needs to have our file multisig_masari_tx in his shell working folder (which means we have to send it) and then use sign_multisig with the file multisig_masari_tx:
 
 `sign_multisig multisig_masari_tx`
 
 ![sign](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/sign_multisig_right1.png)
 
-After verifying the address, amount, fees, ring size, and change address, our friend will press `y` and the transaction will be successfully signed to the file multisig_masari_tx. Now the transaction is ready to be relayed to the network. Do:
+After verifying the address, amount, fees, ring size, and change address, our friend will press `y` and the transaction will be successfully signed to the file multisig_masari_tx. Now the transaction is ready to be relayed to the network. Our friend can
+send the file back to us or broadcast it himself by doing:
 
 `submit_multisig multisig_masari_tx`
 
 ![submit](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/tx_success.png)
+
+Congratulations, transaction successfully submitted!
 
 To recap, the sending process went like:
 
 1. All 3 friends `export_multisig_info` and share their file with the other 2 friends.
 2. Each friend uses `import_multisig_info` with all 3 multisig info files
 3. Any of the 3 friends can start the transaction using the normal `transfer` command and generate a file called "multisig_masari_tx"
-4. One of the *other* 2 friends needs to sign this file by doing `sign_multisig multisig_masari_tx`
+4. One of the *other* 2 friends needs to sign this file by doing `sign_multisig multisig_masari_tx`on the file
 5. The signed file is submitted to the network with `submit_multisig multisig_masari_tx`
 
 If the friends want to send another transaction, they should go back to step 1 and start the process again.
