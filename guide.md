@@ -75,24 +75,8 @@ Sending 1 MSR to the address our friend gave us would then look like this
 
 `transfer 9jNEbBf4eUUeNvKEJVpeqGa86iavuJzhAV35REsYNh7KEHrFrHFJAMJiA1PPdLZdAvDAN7ps4Jn6iLfobCmMyT9pV17nrRi 1`
 
-If you use a payment ID, it should be inserted after <amount>. Using a new address for each transaction is recommended, though.
-If you want to reuse addresses, you can use the address book funcion.
- 
-To send to multiple addresses in the same transaction, use:
-
-`transfer <address> <amount> <address> <amount> <address> <amount> <address> <amount>`
- 
-To send **all** the money from an address, use
- 
- `sweep_all <destination address>`
- 
-Remember that if you want to sweep everything away from the *entire wallet* you will have to go through each *account* and do
-sweep_all for each *address*. The `sweep_all` function starts with the highest index address and goes down to the address
-at index 0. To check that you got all the coin out of the wallet, simply do
- 
- `account`
- 
-and it will show you each account with it's corresponding balance.
+If you use a payment ID, it should be inserted after the amount. Using a new address for each transaction is recommended, though.
+If you want to reuse addresses and send multiple transactions to the same address, you can use the address book funcion.
 
 ### Address book
 
@@ -131,7 +115,7 @@ In this case it's
 e8b96020ae99162c0d87d35d5d96e960e573189cefea634660c0cb1f01a6d905
 Save this for step 3.
 
-Finally, check the tx key with the address you sent to
+Finally, check the tx key with the address you sent to,
 
 `check_tx_key <txid> <txkey> <address>`
 
@@ -170,13 +154,12 @@ for example:
 
 `sign /home/me/Desktop/message.txt`
 
-This will print out a signature. You need to give that signature and your wallet address to the other party to 
-verify the file with the verify command:
+This will print out a signature. You need to give that signature and your wallet address (with the file to transfer, of
+course) to the other party to verify the file with the verify command:
 
 `verify <filename> <address> <signature>`
 
-Send them the file, the signature you created, and your wallet address. They can verify that the file has not been 
-tampered with by doing:
+They can verify that the file has not been tampered with by doing:
 
 `verify /home/my_friend/Downloads/message.txt <my address> <signature from previous step>`
 
@@ -190,6 +173,22 @@ or
  
  
 ### Other basic commands
+
+To send to multiple addresses in the same transaction, use:
+
+`transfer <address> <amount> <address> <amount> <address> <amount> <address> <amount>`
+ 
+To send **all** the money from an address, use
+ 
+ `sweep_all <destination address>`
+ 
+Remember that if you want to sweep everything away from the *entire wallet* you will have to go through each *account* and do
+sweep_all for each *address*. The `sweep_all` function starts with the highest index address and goes down to the address
+at index 0. To check that you got all the coin out of the wallet, simply do
+ 
+ `account`
+ 
+and it will show you each account with it's corresponding balance.
  
 `bc_height` prints the block chain height
  
