@@ -171,7 +171,92 @@ or
 
  `Error: Bad signature from <address>`
  
- 
+### Multisig wallet
+
+**Warning: It's best to start this process with a new wallet. Making a wallet that's in use into a multisig wallet will cause all the wallet's existing funds to need to meet the multisig wallet requirements.**
+
+Let's make a 2/3 multisig wallet- meaning a wallet that is shared between 3 parties and requires the signature of 2 of the
+parties to send a transaction. After generating a new wallet (or 3 in the case of this tutorial example) we start by doing:
+
+`prepare_multisig`
+
+The output will be:
+
+`[wallet 5nsmk1]: prepare_multisig
+Wallet password: 
+MultisigV1cwjWztsW58NCXeWLBJm9oBawvQGGSTrcvhEo9diSuZQ8FSiGVPqLT3DbHeYKBTkyGjfbWqzpViuXwDPFvsL5RVdUbw1E5W9Tuc9XmWSS8dTySm2HPfaoyjBNi88AzP8DJQP5VV4CaVhxzAJgiGNpyC8ChJgXL4mPFWqyLb8FdUxeY2WC
+Send this multisig info to all other participants, then use make_multisig <threshold> <info1> [<info2>...] with others' multisig info
+This includes the PRIVATE view key, so needs to be disclosed only to that multisig wallet's participants`
+
+All parties involved need to run this command and share their respective output line [MultisigV1cs...Y2WC] with all other parties, so make sure to save that output line somewhere for easy access.
+
+Let's say that our 2 friends gave us their multisig info as follows:
+
+MultisigV1D9uKCS3sYKzWGgDA5nieEg7WwQDXpAPEgWWp83dDvQnJC51aFzcKLXWVPrAjX7PfspgvxXZGLU7bTgBSiawsXpCZfVW5GfrWcwdVHQypWQt1Nv4NhYUiDtGReVoXMoPJQGcK6TYR3NNWTMNDZDCB8sCK9jSv5tbpXF9bi7NVWXSB392S
+
+MultisigV16fa4JTwXSaLi8NUVfaXhu1Rid6zt8MsYNGgYwbhLAj5e2rVwH7gR7rMjo898PvqtoBbYbDg96W2EV7kTv7xiAU5X3b4mQ1AGJbn3GeohBPd8334EWRaMN7vqnPQeYMgzNqGc1awtuX8WF5AEwTNyu8EAAsHgD6k5re7nXVc2muonKuQU
+
+Now we do make_multisig <# of signatures needed> <friends' multisig info>
+
+`make_multisig 2 MultisigV1D9uKCS3sYKzWGgDA5nieEg7WwQDXpAPEgWWp83dDvQnJC51aFzcKLXWVPrAjX7PfspgvxXZGLU7bTgBSiawsXpCZfVW5GfrWcwdVHQypWQt1Nv4NhYUiDtGReVoXMoPJQGcK6TYR3NNWTMNDZDCB8sCK9jSv5tbpXF9bi7NVWXSB392S MultisigV16fa4JTwXSaLi8NUVfaXhu1Rid6zt8MsYNGgYwbhLAj5e2rVwH7gR7rMjo898PvqtoBbYbDg96W2EV7kTv7xiAU5X3b4mQ1AGJbn3GeohBPd8334EWRaMN7vqnPQeYMgzNqGc1awtuX8WF5AEwTNyu8EAAsHgD6k5re7nXVc2muonKuQU`
+
+Note that there's a space between the 2 strings of multisig info from our friends, and we do not include our own multisig info in this command. The output will be something like:
+
+`Another step is needed
+MultisigxV1RyEDEvH47sE2vmWE9xUpHRdYdxQcdXHR5UJbhQkKr8M8YrU29mR3BBTL1S8fiFVpfSSVXuSVzfPJ9FYBbsdqU3A2cgWNdKU19WPgggPp12hAnBiSkL3q1wUmMi365HfqZbZ4DSjawWJFVDkcQdgsYJY2LJhxe5dQhLccujb3rLkXL62ZE7nF9C5rXJ3HH54QJsyWA3G25ckc9re5WLehexiQbgby
+Send this multisig info to all other participants, then use finalize_multisig <info1> [<info2>...] with others' multisig info`
+
+This is telling us to do almost the exact same thing one more time. Each person does `finalize_multisig` with the output line of the other 2 friends. Our output line was [MultisigxV1RyED...LehexiQbgby], so for this example:
+
+`finalize_multisig MultisigxV1DJKkCJAaVw7BTnAQuMpHSe3xVgRoQtp4d6ty7nbiissBYrU29mR3BBTL1S8fiFVpfSSVXuSVzfPJ9FYBbsdqU3A2aabVeFzGHHdPwGEudRHKp3QiirG6sZbduaWNo3mxec7HAVSqcsCKynTSgQgwDXYQ8wevq8tPcag5ABMKpy7yojYgc94tsn4rc3vDyrx5JoZH5VjFqvBGKNWW59EgxprmCAiV MultisigxV1NeWAJKop7e7DMnUSQJzMKVHMzU4PDNajV6MpMkmz4e9wcgWNdKU19WPgggPp12hAnBiSkL3q1wUmMi365HfqZbZ4aabVeFzGHHdPwGEudRHKp3QiirG6sZbduaWNo3mxec7H9yZ51cgZhpYVoTbVWNMTLHHg15tBTQZHMgDPruqBbHV265T2UjJX7qwA5G1bpr6ZUtPU8c3D613HWcqB6fkvkcn4`
+
+Remember to put a space between the sets of multisig info. There should be no output, but you will notice that the wallet address has changed. INSERT PIC
+
+Your new, multisig wallet address can be found by doing
+
+`address`
+
+and you will notice that now all 3 parties have the same wallet address.
+
+INSERT PIC
+
+
+After our multisig wallet has some funds on it, let's spend them. First we need to exchange multisig info with our friends. Since this is a 2/3 multisig wallet, we need the info from 1 friend to complete a transaction. Alternatively, we could get the info from both friends and decide later which info to sign with. First we'll *export* our multisig info by using the command export_multisig_info and any file name, like:
+
+`export_multisig_info multis1`
+
+The exported file will be in the same folder as your wallets, in this case /home/fire/masari-linux-x64-v0.3.0.0. We need to send this to our 2 friends so they can sign a transaction, and they need to send their exported multisig info to us.
+
+Now at least 1 other friend needs to *import* the multisig info file. By default, the wallet will look in the shell working folder for the files (that was /home/fire/masari-linux-x64-v0.3.0.0 in this case, but can vary if you have an advanced setup), so make sure the files are there. The file "multis 2" should be in friend #2's wallet folder since he exported it there. We do this next step with the import_multisig_info command:
+
+`import_multisig_info multis1 multis2`
+
+The output will tell us the balance our multisig wallet has to work with, and that multisig info was imported.
+
+Now let's spend!
+
+Any of the 3 friends can start the transaction, and will need to get the signature from 1 of the other 2 friends. Start the transaction as usual
+
+`transfer 5qF9rxMbxBH4mEXBs1SE1taMDrkEoVzGX4ycwBhNCiVqPMc5yEKoEqN4TLavJcdLMJGyQgawFTKbu5QTHFLVQWsWTbFTkX6 1`
+
+This will generate a file called multisig_masari_tx. For peace of mind, let's do one transaction at a time. Let's choose friend #2 to complete the signature for this transaction. Our friend needs to have our file multisig_masari_tx in his shell working folder and then use sign_multisig
+
+`sign_multisig multisig_masari_tx`
+
+After verifying the address, amount, fees, ring size, and change address, our friend will press `y` and the transaction will be successfully signed to the file multisig_masari_tx. Now the transaction is ready to relay to the network. This can 
+
+submit_multisig multisig_masari_tx
+
+To recap, the sending process went like:
+
+1. All 3 friends `export_multisig_info` and share their file with the other 2 friends.
+2. Each friend uses `import_multisig_info` with all 3 multisig info files
+3. Any of the 3 friends can start the transaction using the normal `transfer` command and generate a file called "multisig_masari_tx"
+4. One of the *other* 2 friends needs to sign this file by doing `sign_multisig multisig_masari_tx`
+5. The signed file is submitted to the network with `submit_multisig multisig_masari_tx`
+
+If the friends want to send another transaction, they should go back to step 1 and start the process again.
+
 ### Other basic commands
 
 To send to multiple addresses in the same transaction, use:
