@@ -11,6 +11,8 @@ Create a new wallet by entering any name for the wallet. Then input a password a
 and keep your 25 word seed safe- with just those 25 words you can access and restore the entire wallet, including spending all
 the funds on it. Now you're ready to begin.
 
+![A new wallet](https://imgur.com/x998OUH)
+
 The general structure of simplewallet is:
 
 #### wallet > account > address
@@ -27,6 +29,8 @@ Let's add another account for "everyday cash"
 
 `account new everyday cash`
 
+![New accounts](https://imgur.com/dLUwSnT)
+
 As you can see, we now have 3 accounts indexed 0,1, and 2. To switch between accounts, use 
 
 `account switch <index>`
@@ -38,6 +42,8 @@ inevitably rolls around.
 `account switch 1`
 
 `address new old TV`
+
+![Address for TV money](https://imgur.com/ZuQHfeV)
 
 Now we can give this new address 9pDUb...43yY to the customer. The price for the old TV is 2 MSR. When we want to verify that
 the customer has paid, we can to switch to the relevant account and use
@@ -56,6 +62,8 @@ where we see (in order) block height, transaction in or out, time, amount, txid,
 corresponds to our generated address "old TV" index 1, so we know the TV is paid for. For the sake of privacy, we won't reuse 
 this address.
 
+![Got the TV money!](https://imgur.com/mO7ITUs)
+
 ### Sending
 
 Now say we want to send 1 MSR to a friend. After we open the wallet and select the account we want to send from, we can
@@ -69,6 +77,17 @@ Sending 1 MSR to the address our friend gave us would then look like this
 
 If you use a payment ID, it should be inserted after <amount>. Using a new address for each transaction is recommended, though.
 If you want to reuse addresses, you can use the address book funcion.
+ 
+ To send all the money from a certain account, use
+ 
+ `sweep_all <destination address>`
+ 
+ Remember that if you want to sweep everything away from the *entire wallet* you will have to go through each *account* and do
+ sweep_all. To check that you got all accounts, simply do
+ 
+ `account`
+ 
+ and it will show you each account with it's corresponding balance.
 
 ### Address book
 
@@ -115,6 +134,8 @@ Possible outcomes are:
  `<address> received <amount> in txid <txid>`
 or
  `Error: <address> received nothing in txid <txid>`
+ 
+ ![Prove sending](https://imgur.com/bGSrp7k)
 
 ###Signing and verifying
 
