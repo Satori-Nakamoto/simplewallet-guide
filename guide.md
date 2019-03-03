@@ -11,7 +11,7 @@ Create a new wallet by entering any name for the wallet. Then input a password a
 and keep your 25 word seed safe- with just those 25 words you can access and restore the entire wallet, including spending all
 the funds on it. Now you're ready to begin.
 
-![A new wallet](https://imgur.com/x998OUH)
+![A new wallet](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/create_new_wallet.png)
 
 The general structure of simplewallet is:
 
