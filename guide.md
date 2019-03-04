@@ -260,7 +260,12 @@ Any of the 3 friends can start the transaction, and will need to get the signatu
 
 ![transfer](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/transfer.png)
 
-This will generate a file called multisig_masari_tx. For peace of mind, let's do one transaction at a time. Let's choose friend #2 to complete the signature for this transaction. Our friend needs to have our file multisig_masari_tx in his shell working folder (which means we have to send it) and then use sign_multisig with the file multisig_masari_tx:
+This will generate a file called multisig_masari_tx. For peace of mind, let's do one transaction at a time. Let's choose friend #2 to complete the signature for this transaction. If we choose a friend that we did *not* import the multisig file info from, we will get the error
+
+`Error: Failed to sign multisig transaction: Final signed transaction not found: this transaction was likely made without our export data, so we cannot sign it`
+
+Also, our friend needs to have our file multisig_masari_tx in his shell working folder (which means we have to send it) and then
+they can use sign_multisig with the file multisig_masari_tx:
 
 `sign_multisig multisig_masari_tx`
 
@@ -283,7 +288,8 @@ To recap, the sending process went like:
 4. At least 1 of the *other* 2 friends needs to sign this file by doing `sign_multisig multisig_masari_tx`on the file
 5. The signed file is submitted to the network with `submit_multisig multisig_masari_tx`
 
-If the friends want to send another transaction, they should go back to step 1 and start the process again.
+If the friends want to send another transaction, they should go back to step 1 and start the process again. If you don't 
+delete the file multisig_masari_tx it will just be overwritten next time a multisig transaction is created.
 
 ### Other basic commands
 
