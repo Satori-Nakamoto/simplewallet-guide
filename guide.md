@@ -58,8 +58,8 @@ To see specifically which address received the funds, we can use:
 `show_transfers in`
 
 where we see (in order) block height, transaction in or out, time, amount, txid, payment id, and index. The index 1
-corresponds to our generated address "old TV" index 1, so we know the TV is paid for. For the sake of privacy, we won't reuse 
-this address.
+corresponds to our generated address "old TV" at index 1, so we know the TV is paid for. When the transaction comes in (or is
+checked with `show_transfers in`) it specifies exactly where in the wallet the funds were sent to, in this case (in green) it says "idx 1/1" which means that the funds arrived to the account at index 1 (garage sale income), address at index 1 (old TV). For the sake of privacy, we won't reuse this address.
 
 ![Got the TV money!](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/payment_receive_index1.png)
 
