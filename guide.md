@@ -1,4 +1,4 @@
-# Guide to simplewallet
+# Guide to CLI wallet
 ## Based on Masari v0.3
 
 ### Basics
@@ -13,12 +13,11 @@ the funds on it. Now you're ready to begin.
 
 ![A new wallet](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/create_new_wallet.png)
 
-The general structure of simplewallet is:
+The general structure of a wallet is:
 
 #### wallet > account > address
 
-meaning that a wallet can contain several (hundreds? thousands?) accounts and each account can contain several 
-(hundreds? thousands?) addresses. The wallet starts out with one account with one address on it. Let's make more.
+meaning that a wallet can contain many accounts and each account can contain many addresses. The wallet starts out with one account with one address on it. Let's make more.
 
 First, a new account within our wallet:
 
@@ -152,7 +151,7 @@ the information needed, then simply copy and paste the info into the block explo
 
 ### Signing and verifying
 
-Since cryptocurrencies are founded on cryptography, we can do some pretty neat things with the simplewallet, like
+Since cryptocurrencies are founded on cryptography, we can do some pretty neat things with the CLI wallet, like
 sign and verify files. Let's make a text file with a message, say message.txt, and sign it with:
 
 `sign <file_to_sign>`
@@ -278,10 +277,10 @@ Congratulations, transaction successfully submitted!
 
 To recap, the sending process went like:
 
-1. All 3 friends `export_multisig_info` and share their file with the other 2 friends.
-2. Each friend uses `import_multisig_info` with all 3 multisig info files
-3. Any of the 3 friends can start the transaction using the normal `transfer` command and generate a file called "multisig_masari_tx"
-4. One of the *other* 2 friends needs to sign this file by doing `sign_multisig multisig_masari_tx`on the file
+1. At least 2 friends `export_multisig_info` and share their file with the other one (or both).
+2. The other friend (or both) uses `import_multisig_info` with at least 1 other multisig info file.
+3. Any of the friends with imported multisig info can start the transaction using the normal `transfer` command and generate a file called "multisig_masari_tx", which should be sent to at least 1 other friend for signing.
+4. At least 1 of the *other* 2 friends needs to sign this file by doing `sign_multisig multisig_masari_tx`on the file
 5. The signed file is submitted to the network with `submit_multisig multisig_masari_tx`
 
 If the friends want to send another transaction, they should go back to step 1 and start the process again.
@@ -314,8 +313,6 @@ and it will show you each account with it's corresponding balance.
 
 `fee` shows the current tx fee per kb, as well as any backlogs in the mempool
 
-`get_description` is used to describe reality
-
-`payment_id` is used to generate a random payment ID
+`payment_id` is used to generate a random payment ID, useful for knowing who a specific payment came from
 
 `wallet_info` displays basic info about your wallet, like name and address
