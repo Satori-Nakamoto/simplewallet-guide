@@ -1,2 +1,3 @@
 # simplewallet-guide
-Guide to the commands in Masari's v0.3 simplewallet
+
+Beginner's guide to using CLI wallets. Based on Masari v0.3.0.
