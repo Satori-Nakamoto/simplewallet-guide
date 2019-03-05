@@ -63,6 +63,30 @@ checked with `show_transfers in`) it specifies exactly where in the wallet the f
 
 ![Got the TV money!](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/payment_receive_index1.png)
 
+### Importing a wallet
+
+If you have previously generated a wallet (from [an offline wallet generator](https://getmasari.org/masari-wallet-generator.html) for example) and want to import it using the command line interface (CLI), you can use the following tools
+in a new terminal window:
+
+* import with view key
+
+`./masari-wallet-cli --generate-from-view-key <wallet name>`
+
+* import with spend key
+
+`./masari-wallet-cli --generate-from-view-key <wallet name>`
+
+* import with 25 word mnemonic phrase
+
+`./masari-wallet-cli --restore-deterministic-wallet <wallet name>`
+
+Importing with the view key will generate a *view-only* wallet, which we can not spend from. A view-only wallet also does not
+show transactions **out**, but only transactions **in**. For that reason, the balance reflected in a view-only wallet may be
+inaccurate, since any transactions out have not been substracted from the balance.
+
+Importing a wallet via spend key or mnemonic phrase will give us full access to the wallet, including the ability to spend the
+funds on that wallet. This is why spend key and mnemonic phrase must be kept secure at all times!
+
 ### Sending
 
 Now say we want to send 1 MSR to a friend. After we open the wallet and select the account we want to send from, we can
