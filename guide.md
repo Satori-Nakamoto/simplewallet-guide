@@ -3,7 +3,9 @@
 
 ### Basics
 
-After the daemon is synced, open a new terminal tab with Ctrl + Shift + t
+![synced](https://github.com/Satori-Nakamoto/simplewallet-guide/blob/master/synced.png)
+
+After the daemon is synced, open a new terminal tab with Ctrl + Shift + t. Start the CLI wallet with:
 
 `./masari-wallet-cli`
 
